@@ -6,8 +6,8 @@ import QuoteScreen from './QuoteScreen'
 const HomeTabsNavigator = TabNavigator(
   {
     Home1: { screen: QuoteScreen },
-    Home2: { screen: QuoteScreen },
-    Home3: { screen: QuoteScreen },
+    Home2: { screen: HomeScreen },
+    Home3: { screen: HomeScreen },
   },
   {
     navigationOptions: {
