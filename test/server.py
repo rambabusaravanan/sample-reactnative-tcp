@@ -65,7 +65,7 @@ while True:
 
             print 'Server sent:', data
             conn.send(data)    
-            time.sleep(1)
+            time.sleep(0.1)
         except socket.error, msg:
             print 'Client connection closed', addr
             break

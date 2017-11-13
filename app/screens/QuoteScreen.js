@@ -49,10 +49,21 @@ export default class QuoteScreen extends Component {
       console.log(error)
     });
 
-    client.on('data', (data) => {
-      data = JSON.parse(String.fromCharCode(...Object.values(data)))
-      this.setState({ data })
-      console.log('TCP :::: on data', data)
+    client.on('data', (rawData) => {
+      try {
+        data = JSON.parse(String.fromCharCode(...Object.values(rawData)))
+        this.setState({ data })
+        console.log('TCP :::: on data')
+      } catch (e) {
+        try {
+          console.log('JSON :::: parse error')
+          console.log(e);
+          // console.log(rawData)
+          console.log(String.fromCharCode(...Object.values(rawData)))
+        } catch (e) {
+          console.log('JSON :::: parse error in catch(e)')
+        }
+      }
     });
 
   }
@@ -122,6 +133,7 @@ export default class QuoteScreen extends Component {
         <FlatList
           data={this.state.data}
           renderItem={({ item }, i) => <ItemView key={i} data={item} />}
+          keyExtractor={(item, index) => index}
         />
       </View>
     );
